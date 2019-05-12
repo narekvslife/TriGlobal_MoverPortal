@@ -39,7 +39,7 @@ struct Lead {
     // прикол в том, что в Api также есть сущность "re_remarks"!
     // и у некоторых челиков remarks != nil и re_volume_calculator = *пустой словарь*. И наоборот (лол что хех)
     
-    static func leadsData(id: String) -> [Lead]?{
+    static func getLeadsData(id: String) -> [Lead]?{
         var leads = [Lead]()
         let Api = ApiLead(id: "1")
         if let json = Api.leadsJson{
