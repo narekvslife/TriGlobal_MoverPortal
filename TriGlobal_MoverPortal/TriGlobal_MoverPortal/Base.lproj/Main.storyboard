@@ -24,7 +24,64 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z0R-Z0-kv7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="145" y="771"/>
+            <point key="canvasLocation" x="145" y="951"/>
+        </scene>
+        <!--Leads View Controller-->
+        <scene sceneID="gcm-Nu-ztf">
+            <objects>
+                <tableViewController id="xXy-Nq-qND" customClass="LeadsViewController" customModule="TriGlobal_MoverPortal" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dwd-3x-FLf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" red="0.20644816407195007" green="0.72369095161575558" blue="0.9354974627494812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LeadCell" id="qkV-wD-MlI" customClass="LeadsTableViewCell" customModule="TriGlobal_MoverPortal">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qkV-wD-MlI" id="tqr-Xt-UOE">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22.01.2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0UM-gb-ApY">
+                                            <rect key="frame" x="266" y="10" width="101" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Narek Alvandian" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKa-8W-GJk">
+                                            <rect key="frame" x="8" y="11" width="141.5" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="0UM-gb-ApY" secondAttribute="trailing" constant="8" id="2Va-qw-6Q3"/>
+                                        <constraint firstItem="0UM-gb-ApY" firstAttribute="centerY" secondItem="tqr-Xt-UOE" secondAttribute="centerY" id="EZ0-Rp-119"/>
+                                        <constraint firstItem="UKa-8W-GJk" firstAttribute="leading" secondItem="tqr-Xt-UOE" secondAttribute="leading" constant="8" id="PzD-mi-Zr8"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="UKa-8W-GJk" secondAttribute="bottom" constant="-2" id="hcI-Ce-1Yx"/>
+                                        <constraint firstItem="UKa-8W-GJk" firstAttribute="top" secondItem="tqr-Xt-UOE" secondAttribute="topMargin" id="jsc-cW-Ul5"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="DeadLineDate" destination="0UM-gb-ApY" id="oUB-eN-A7A"/>
+                                    <outlet property="FullName" destination="UKa-8W-GJk" id="qMF-WL-Yrv"/>
+                                    <segue destination="bKc-uU-J4Z" kind="show" identifier="ShowDetailsSeague" id="9IR-F4-CcF"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xXy-Nq-qND" id="hn0-ws-x6L"/>
+                            <outlet property="delegate" destination="xXy-Nq-qND" id="WCV-je-YUd"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="H7I-Ls-qdI"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rfW-Uh-QYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1040.8" y="80.50974512743629"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tAw-uo-d2H">
@@ -44,21 +101,20 @@
             </objects>
             <point key="canvasLocation" x="-1097" y="417"/>
         </scene>
-        <!--Leads View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Detailed Lead View Controller-->
+        <scene sceneID="tgD-90-AmM">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LeadsViewController" customModule="TriGlobal_MoverPortal" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="bKc-uU-J4Z" customClass="DetailedLeadViewController" customModule="TriGlobal_MoverPortal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0nK-Fu-jpe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ma5-LA-KKT"/>
                     </view>
-                    <navigationItem key="navigationItem" id="z4a-CT-Io4"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ne9-cb-VP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1084" y="81.409295352323838"/>
+            <point key="canvasLocation" x="1850" y="81"/>
         </scene>
         <!--Leads-->
         <scene sceneID="pn8-ij-Nfd">
@@ -72,7 +128,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rvK-q8-cqm"/>
+                        <segue destination="xXy-Nq-qND" kind="relationship" relationship="rootViewController" id="tA4-qc-DAP"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="obk-1e-CfW" userLabel="First Responder" sceneMemberID="firstResponder"/>

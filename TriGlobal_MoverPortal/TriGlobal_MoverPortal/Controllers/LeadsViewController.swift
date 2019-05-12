@@ -8,17 +8,31 @@
 
 import UIKit
 
-class LeadsViewController: UIViewController {
+class LeadsViewController: UITableViewController {
 
+    private var leads: [Lead]? = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        let leads: [Lead]? = Lead.getLeadsData(id: "1")
+        self.leads = Lead.getLeadsData(id: "1")
         print(leads!)
     }
     
+   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return leads!.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LeadCell", for: indexPath)
+        if let myCell = cell as? LeadsTableViewCell {
+            let lead = self.leads![indexPath.row]
+            myCell.FullName.text = lead.name
+            myCell.DeadLineDate.text = lead.movingDate
+        }
+       return cell
+    }
 
     /*
     // MARK: - Navigation
