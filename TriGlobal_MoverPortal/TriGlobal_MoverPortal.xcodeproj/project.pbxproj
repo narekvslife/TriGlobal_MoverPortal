@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		A535E0E7228199600005662B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A535E0E6228199600005662B /* AppDelegate.swift */; };
-		A535E0E9228199600005662B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A535E0E8228199600005662B /* ViewController.swift */; };
 		A535E0EC228199600005662B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A535E0EA228199600005662B /* Main.storyboard */; };
 		A535E0EE228199610005662B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A535E0ED228199610005662B /* Assets.xcassets */; };
 		A535E0F1228199610005662B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A535E0EF228199610005662B /* LaunchScreen.storyboard */; };
+		A552D54C22888B3600430BA8 /* LeadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552D54B22888B3600430BA8 /* LeadsViewController.swift */; };
+		A552D54E22888EFE00430BA8 /* FreeLeadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552D54D22888EFE00430BA8 /* FreeLeadsViewController.swift */; };
+		A552D5502288A86500430BA8 /* DetailedLeadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552D54F2288A86500430BA8 /* DetailedLeadViewController.swift */; };
+		A552D5552288B91400430BA8 /* LeadsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552D5522288B17800430BA8 /* LeadsTableViewCell.swift */; };
 		D1B005FD2281A73900AD247A /* Lead.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B005FC2281A73900AD247A /* Lead.swift */; };
 		D1B005FF2281B24900AD247A /* ApiLead.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B005FE2281B24900AD247A /* ApiLead.swift */; };
 /* End PBXBuildFile section */
@@ -19,11 +22,14 @@
 /* Begin PBXFileReference section */
 		A535E0E3228199600005662B /* TriGlobal_MoverPortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriGlobal_MoverPortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A535E0E6228199600005662B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A535E0E8228199600005662B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A535E0EB228199600005662B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A535E0ED228199610005662B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A535E0F0228199610005662B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A535E0F2228199610005662B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A552D54B22888B3600430BA8 /* LeadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsViewController.swift; sourceTree = "<group>"; };
+		A552D54D22888EFE00430BA8 /* FreeLeadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeLeadsViewController.swift; sourceTree = "<group>"; };
+		A552D54F2288A86500430BA8 /* DetailedLeadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedLeadViewController.swift; sourceTree = "<group>"; };
+		A552D5522288B17800430BA8 /* LeadsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsTableViewCell.swift; sourceTree = "<group>"; };
 		D1B005FC2281A73900AD247A /* Lead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lead.swift; sourceTree = "<group>"; };
 		D1B005FE2281B24900AD247A /* ApiLead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLead.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,16 +64,51 @@
 		A535E0E5228199600005662B /* TriGlobal_MoverPortal */ = {
 			isa = PBXGroup;
 			children = (
-				A535E0E6228199600005662B /* AppDelegate.swift */,
-				A535E0E8228199600005662B /* ViewController.swift */,
+				A535E0F2228199610005662B /* Info.plist */,
+				A552D547228884EF00430BA8 /* HelperFiles */,
+				A552D5512288B11600430BA8 /* Views */,
+				A552D54A228886EA00430BA8 /* Controllers */,
+				A552D5492288851C00430BA8 /* Model */,
 				A535E0EA228199600005662B /* Main.storyboard */,
+			);
+			path = TriGlobal_MoverPortal;
+			sourceTree = "<group>";
+		};
+		A552D547228884EF00430BA8 /* HelperFiles */ = {
+			isa = PBXGroup;
+			children = (
+				A535E0E6228199600005662B /* AppDelegate.swift */,
 				A535E0ED228199610005662B /* Assets.xcassets */,
 				A535E0EF228199610005662B /* LaunchScreen.storyboard */,
-				A535E0F2228199610005662B /* Info.plist */,
+			);
+			path = HelperFiles;
+			sourceTree = "<group>";
+		};
+		A552D5492288851C00430BA8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				D1B005FC2281A73900AD247A /* Lead.swift */,
 				D1B005FE2281B24900AD247A /* ApiLead.swift */,
 			);
-			path = TriGlobal_MoverPortal;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A552D54A228886EA00430BA8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A552D54B22888B3600430BA8 /* LeadsViewController.swift */,
+				A552D54D22888EFE00430BA8 /* FreeLeadsViewController.swift */,
+				A552D54F2288A86500430BA8 /* DetailedLeadViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A552D5512288B11600430BA8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A552D5522288B17800430BA8 /* LeadsTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,9 +182,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A552D54C22888B3600430BA8 /* LeadsViewController.swift in Sources */,
 				D1B005FF2281B24900AD247A /* ApiLead.swift in Sources */,
 				D1B005FD2281A73900AD247A /* Lead.swift in Sources */,
-				A535E0E9228199600005662B /* ViewController.swift in Sources */,
+				A552D54E22888EFE00430BA8 /* FreeLeadsViewController.swift in Sources */,
+				A552D5552288B91400430BA8 /* LeadsTableViewCell.swift in Sources */,
+				A552D5502288A86500430BA8 /* DetailedLeadViewController.swift in Sources */,
 				A535E0E7228199600005662B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,7 +335,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3G37H4RB4N;
+				DEVELOPMENT_TEAM = 444WN3X977;
 				INFOPLIST_FILE = TriGlobal_MoverPortal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -310,7 +354,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3G37H4RB4N;
+				DEVELOPMENT_TEAM = 444WN3X977;
 				INFOPLIST_FILE = TriGlobal_MoverPortal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
