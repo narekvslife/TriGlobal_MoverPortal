@@ -15,12 +15,21 @@ class LeadsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        api = ApiLead(id: "1")
-
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.api = ApiLead(id: "1")
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+        }
+        tableView.dataSource = self
+        
+        
     }
     
    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return api!.leads!.count
+        return api?.leads?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
