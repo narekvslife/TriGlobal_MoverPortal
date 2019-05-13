@@ -9,27 +9,28 @@
 import UIKit
 
 class LeadsViewController: UITableViewController {
-
-    private var leads: [Lead]? = []
+    
+    var api: ApiLead?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        self.leads = Lead.getLeadsData(id: "1")
-        print(leads!)
+        api = ApiLead(id: "1")
+
     }
     
    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return leads!.count
+        return api!.leads!.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeadCell", for: indexPath)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         if let myCell = cell as? LeadsTableViewCell {
-            let lead = self.leads![indexPath.row]
+            let lead = api!.leads![indexPath.row]
             myCell.FullName.text = lead.name
-            myCell.DeadLineDate.text = lead.movingDate
+            myCell.DeadLineDate.text = dateFormatter.string(from: lead.movingDate)
         }
        return cell
     }
