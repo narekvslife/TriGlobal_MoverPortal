@@ -12,36 +12,63 @@ class DetailedLeadViewController: UITableViewController {
 
     
     //  TODO 55 56
-    private var leadInfo: Lead? =  nil
+    public var leadInfo: Lead? =  nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        print(leadInfo)
     }
     
-    //method for drawing headers
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0, 1:
+            return 5
+        case 2, 3:
+            return 4
+        default:
+            return 0
+        }
+    }
     /*
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let  headerCell = tableView.dequeueReusableCell(withIdentifier :"DetailedHeaderCell")
+        switch section {
+        case 0:
+     
+        case 1:
+     
+        case 2:
+     
+        case 3:
+     
+        default:
             
-            if let myHeaderCell = headerCell as? DetailedTableViewHeaderCell
-        {
-        switch (section) {
-            case 0:
-                myHeaderCell.headerName.text = "General Information";
-            case 1:
-                myHeaderCell.headerName.text = "Contact Details";
-            case 2:
-                myHeaderCell.headerName.text = "Moving From";
-            case 3:
-                myHeaderCell.headerName.text = "Moving To";
-            default: break
-            }
         }
-        return headerCell
+    }
+    */
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailedCell", for: indexPath)
         
-    }*/
+        switch indexPath.section{
+        case 0:
+            cell.textLabel?.text = "hey"
+        case 1:
+            cell.textLabel?.text = "bitch"
+        case 2:
+            cell.textLabel?.text = "bye"
+        case 3:
+            cell.textLabel?.text = "horse"
+        default:
+            cell.textLabel?.text = ""
+        }
+        
+        return cell
+    }
+}
     
     /*
     // MARK: - Navigation
@@ -53,4 +80,3 @@ class DetailedLeadViewController: UITableViewController {
     }
     */
 
-}

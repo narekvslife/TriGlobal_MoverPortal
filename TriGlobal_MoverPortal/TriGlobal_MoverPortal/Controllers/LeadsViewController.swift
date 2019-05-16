@@ -58,7 +58,8 @@ class LeadsViewController: UITableViewController {
                 if let cell = sender as? LeadsTableViewCell,
                     let indexPath = tableView.indexPath(for: cell),
                     let sequedTo = segue.destination as? DetailedLeadViewController{
-                    // TODO 55:56
+                    print("\n\n\n\n\n\n ????")
+                    sequedTo.leadInfo = api?.leads?[indexPath.row]
                 }
                 
             default: break
