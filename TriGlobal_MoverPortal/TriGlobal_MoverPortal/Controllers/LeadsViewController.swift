@@ -25,7 +25,7 @@ class LeadsViewController: UITableViewController {
         }
         tableView.dataSource = self
         
-        
+        tableView.rowHeight = 60
     }
     
    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{

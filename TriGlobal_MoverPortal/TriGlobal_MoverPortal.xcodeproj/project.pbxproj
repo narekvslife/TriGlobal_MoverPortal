@@ -15,10 +15,6 @@
 		A552D54E22888EFE00430BA8 /* FreeLeadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552D54D22888EFE00430BA8 /* FreeLeadsViewController.swift */; };
 		A552D5502288A86500430BA8 /* DetailedLeadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552D54F2288A86500430BA8 /* DetailedLeadViewController.swift */; };
 		A552D5552288B91400430BA8 /* LeadsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552D5522288B17800430BA8 /* LeadsTableViewCell.swift */; };
-		A552D5592289584100430BA8 /* GeneralInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552D5582289584100430BA8 /* GeneralInfoTableViewCell.swift */; };
-		A552D55B2289585300430BA8 /* ContactInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552D55A2289585300430BA8 /* ContactInfoTableViewCell.swift */; };
-		A552D55D2289587D00430BA8 /* MovingDestinationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552D55C2289587D00430BA8 /* MovingDestinationTableViewCell.swift */; };
-		A552D56122897E8400430BA8 /* DetailedTableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552D56022897E8400430BA8 /* DetailedTableViewHeaderCell.swift */; };
 		D1B005FD2281A73900AD247A /* Lead.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B005FC2281A73900AD247A /* Lead.swift */; };
 		D1B005FF2281B24900AD247A /* ApiLead.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B005FE2281B24900AD247A /* ApiLead.swift */; };
 /* End PBXBuildFile section */
@@ -34,10 +30,6 @@
 		A552D54D22888EFE00430BA8 /* FreeLeadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeLeadsViewController.swift; sourceTree = "<group>"; };
 		A552D54F2288A86500430BA8 /* DetailedLeadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedLeadViewController.swift; sourceTree = "<group>"; };
 		A552D5522288B17800430BA8 /* LeadsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsTableViewCell.swift; sourceTree = "<group>"; };
-		A552D5582289584100430BA8 /* GeneralInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewCell.swift; sourceTree = "<group>"; };
-		A552D55A2289585300430BA8 /* ContactInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoTableViewCell.swift; sourceTree = "<group>"; };
-		A552D55C2289587D00430BA8 /* MovingDestinationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingDestinationTableViewCell.swift; sourceTree = "<group>"; };
-		A552D56022897E8400430BA8 /* DetailedTableViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTableViewHeaderCell.swift; sourceTree = "<group>"; };
 		D1B005FC2281A73900AD247A /* Lead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lead.swift; sourceTree = "<group>"; };
 		D1B005FE2281B24900AD247A /* ApiLead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLead.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,10 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				A552D5522288B17800430BA8 /* LeadsTableViewCell.swift */,
-				A552D5582289584100430BA8 /* GeneralInfoTableViewCell.swift */,
-				A552D55A2289585300430BA8 /* ContactInfoTableViewCell.swift */,
-				A552D55C2289587D00430BA8 /* MovingDestinationTableViewCell.swift */,
-				A552D56022897E8400430BA8 /* DetailedTableViewHeaderCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,16 +183,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A552D54C22888B3600430BA8 /* LeadsViewController.swift in Sources */,
-				A552D56122897E8400430BA8 /* DetailedTableViewHeaderCell.swift in Sources */,
 				D1B005FF2281B24900AD247A /* ApiLead.swift in Sources */,
 				D1B005FD2281A73900AD247A /* Lead.swift in Sources */,
 				A552D54E22888EFE00430BA8 /* FreeLeadsViewController.swift in Sources */,
 				A552D5552288B91400430BA8 /* LeadsTableViewCell.swift in Sources */,
 				A552D5502288A86500430BA8 /* DetailedLeadViewController.swift in Sources */,
-				A552D55D2289587D00430BA8 /* MovingDestinationTableViewCell.swift in Sources */,
-				A552D5592289584100430BA8 /* GeneralInfoTableViewCell.swift in Sources */,
 				A535E0E7228199600005662B /* AppDelegate.swift in Sources */,
-				A552D55B2289585300430BA8 /* ContactInfoTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
