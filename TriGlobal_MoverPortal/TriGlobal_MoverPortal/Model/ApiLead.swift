@@ -9,15 +9,20 @@
 import Foundation
 
 
-
+let leadsURL = "https://public.triglobal.info/api/requests.php"
+let freeLeadsURL = "https://public.triglobal.info/api/freeleads.php"
 
 
 struct ApiLead {
     
     var leadsJson: [Dictionary<String,Any>]?
+    var freeLeadsJson: [Dictionary<String,Any>]?
     var leads: [Lead]?
+    var freeLeads : [Lead]?
     
-    private static func leadsRequest(id: String) -> [Dictionary<String,Any>]?{
+    
+    
+    private static func leadsRequest(id: String, url: String) -> [Dictionary<String,Any>]?{
         var json: [Dictionary<String,Any>]?
   
         let headers = [
@@ -59,17 +64,30 @@ struct ApiLead {
         }
         
         group.wait()
-    
         return json
     }
     
+    enum type{
+        case Leads
+        case FreeLeads
+    }
     
-    
-    init(id: String){
-        self.leadsJson = ApiLead.leadsRequest(id: id)
-        if let json = self.leadsJson{
-            leads = ApiLead.fromJsonToLeadsArray(json: json)
+    init(id: String, apiType: type){
+        
+        switch apiType {
+        case .Leads:
+            self.leadsJson = ApiLead.leadsRequest(id: id, url: leadsURL)
+            if let json = self.leadsJson{
+                leads = ApiLead.fromJsonToLeadsArray(json: json)
+            }
+        case .FreeLeads:
+            self.freeLeadsJson = ApiLead.leadsRequest(id: id, url: freeLeadsURL)
+            if let json = self.freeLeadsJson{
+                freeLeads = ApiLead.fromJsonToLeadsArray(json: json)
+                print(freeLeads)
+            }
         }
+
     }
     
     static func fromJsonToLeadsArray(json: [Dictionary<String,Any>]?) -> [Lead]?{
@@ -78,12 +96,7 @@ struct ApiLead {
             let lead = obj as! [String:String]
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
-            
-            
- 
-            
-            let newLead = Lead(id: lead["re_id"]!, received: lead["ktrecupo_timestamp"]!, name: lead["re_full_name"]!, email: lead["re_email"]! , movingDate: dateFormatter.date(from: lead["re_moving_date"]!)!, cityFrom: lead["re_city_from"]!, countryFrom: lead["re_co_code_from"]!, cityTo: lead["re_city_to"]!, countryTo: lead["re_co_code_to"]! , telephoneFirst: lead["re_telephone1"]!, telephoneSecond: lead["re_telephone2"]!, streetFrom: lead["re_street_from"]!, streetTo: lead["re_street_to"]! , companyName: lead["re_company_name"]!, zipcodeFrom: lead["re_zipcode_from"]!, zipcodeTo: lead["re_zipcode_to"]!, remarks: lead["re_remarks"]!, volumeFt: lead["re_volume_ft3"]!, volumeM: lead["re_volume_m3"]!, business: lead["re_business"]!.bool!, storage: lead["re_storage"]!.bool!, packing: lead["re_packing"]!, assembly: lead["re_assembly"]!)
-            
+            let newLead = Lead(id: lead["re_id"] ?? "-", received: lead["ktrecupo_timestamp"] ?? "-", name: lead["re_full_name"] ?? "-", email: lead["re_email"] ?? "-" , movingDate: dateFormatter.date(from: lead["re_moving_date"]!)!, cityFrom: lead["re_city_from"] ?? "-", countryFrom: lead["re_co_code_from"] ?? "-", cityTo: lead["re_city_to"] ?? "-", countryTo: lead["re_co_code_to"] ?? "-" , telephoneFirst: lead["re_telephone1"] ?? "-", telephoneSecond: lead["re_telephone2"] ?? "-", streetFrom: lead["re_street_from"] ?? "-", streetTo: lead["re_street_to"] ?? "-" , companyName: lead["re_company_name"] ?? "-", zipcodeFrom: lead["re_zipcode_from"] ?? "-", zipcodeTo: lead["re_zipcode_to"] ?? "-", remarks: lead["re_remarks"] ?? "-", volumeFt: lead["re_volume_ft3"] ?? "-", volumeM: lead["re_volume_m3"] ?? "-", business: lead["re_business"]!.bool!, storage: lead["re_storage"] ?? "-", packing: lead["re_packing"] ?? "-", assembly: lead["re_assembly"] ?? "-")
             leads_.append(newLead)
         }
         leads_ = leads_.sorted(by: { $0.movingDate < $1.movingDate})

@@ -14,9 +14,8 @@ class LeadsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         DispatchQueue.global(qos: .userInteractive).async {
-            self.api = ApiLead(id: "1")
+            self.api = ApiLead(id: "1", apiType: .Leads)
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()

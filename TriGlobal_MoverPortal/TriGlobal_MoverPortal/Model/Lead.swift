@@ -29,7 +29,7 @@ struct Lead {
     let volumeFt: String
     let volumeM: String
     let business: Bool
-    let storage: Bool
+    let storage: String
     let packing: String
     let assembly: String // В описании к Api они пишут, что эта сущность принимает только 0 и 1. НО это не так.
     // (0, 1, 2) - судя из Api. И у них на сайте Assembly это не числовая сущность. Там каждому числу

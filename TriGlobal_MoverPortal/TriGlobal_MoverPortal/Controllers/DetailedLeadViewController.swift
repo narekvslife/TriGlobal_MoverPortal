@@ -39,8 +39,10 @@ class DetailedLeadViewController: UITableViewController {
         movingDateLabel.text = df.string(from: leadInfo!.movingDate)
         volumeM3Label.text = leadInfo?.volumeM
         volumeFt3Label.text = leadInfo?.volumeFt
-        assemblyLabel.text = leadInfo?.assembly
-        storageLabel.text = leadInfo?.storage ?? false ? "True" : "False"
+        assemblyLabel.text = (leadInfo?.assembly == "2") ? "Yes" :
+            (leadInfo?.assembly == "1") ? "No" : ""
+        storageLabel.text = (leadInfo?.storage == "2") ? "Yes" :
+            (leadInfo?.storage == "1") ? "No" : ""
         
         companyNameLabel.text = leadInfo?.companyName
         nameLabel.text = leadInfo?.name
