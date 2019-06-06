@@ -12,29 +12,44 @@ class LeadsViewController: UITableViewController {
     
     var api: ApiLead?
     var refresher: UIRefreshControl!
-    
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)
     override func viewDidLoad() {
         super.viewDidLoad()
+        update()
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(LeadsViewController.update),
                             for: UIControl.Event.valueChanged)
         tableView.addSubview(refresher)
         
-        update()
         tableView.rowHeight = 60
     }
     
     @objc func update()
     {
+        self.activityIndicator.center = self.view.center
+        self.activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
         DispatchQueue.global(qos: .userInteractive).async {
             self.api = ApiLead(id: "1", apiType: .Leads)
             DispatchQueue.main.async {
+                if self.api?.leadsJson == nil{
+                    let alert = UIAlertController(title: "Server Error", message: "Something went wrong", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) {
+                        (action) in  print("Error Api")
+                    }
+                    alert.addAction(ok)
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
                 self.refresher.endRefreshing()
+                self.activityIndicator.stopAnimating()
                 self.tableView.reloadData()
             }
         }
         tableView.dataSource = self
+
     }
     
     

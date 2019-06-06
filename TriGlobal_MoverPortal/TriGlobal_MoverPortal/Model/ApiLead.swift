@@ -46,6 +46,7 @@ struct ApiLead {
             URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
                 if let error = error {
                     print(error)
+                    group.leave()
                 } else {
                     if let data = data{
                         do {
@@ -54,7 +55,9 @@ struct ApiLead {
                                 group.leave()
                             }
                             
-                        } catch { print(error) }
+                        } catch { print(error)
+                            group.leave()
+                        }
                         
                     }
                     
