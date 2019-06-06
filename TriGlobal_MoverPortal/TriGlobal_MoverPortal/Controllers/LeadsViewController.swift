@@ -11,21 +11,67 @@ import UIKit
 class LeadsViewController: UITableViewController {
     
     var api: ApiLead?
+    var refresher: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.api = ApiLead(id: "1", apiType: .Leads)
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-            
-        }
-        tableView.dataSource = self
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: #selector(LeadsViewController.update),
+                            for: UIControl.Event.valueChanged)
+        tableView.addSubview(refresher)
         
+        update()
         tableView.rowHeight = 60
     }
+    
+    @objc func update()
+    {
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.api = ApiLead(id: "1", apiType: .Leads)
+            DispatchQueue.main.async {
+                self.refresher.endRefreshing()
+                self.tableView.reloadData()
+            }
+        }
+        tableView.dataSource = self
+    }
+    
+    
+    //var api: ApiLead?
+    //var refresher: UIRefreshControl!
+    //
+    //override func viewDidLoad() {
+    //    super.viewDidLoad()
+    //    refresher = UIRefreshControl()
+    //    //refresher.attributedTitle
+    //
+    //    refresher.addTarget(self, action: #selector(LeadsViewController.update), for: UIControl)
+    //
+    //    DispatchQueue.global(qos: .userInteractive).async {
+    //        self.api = ApiLead(id: "1", apiType: .Leads)
+    //
+    //        DispatchQueue.main.async {
+    //            self.tableView.reloadData()
+    //        }
+    //
+    //    }
+    //    tableView.dataSource = self
+    //
+    //    tableView.rowHeight = 60
+    //}
+    //
+    //func update()
+    //{
+    //    DispatchQueue.global(qos: .userInteractive).async {
+    //        self.api = ApiLead(id: "1", apiType: .Leads)
+    //        DispatchQueue.main.async {
+    //            self.tableView.reloadData()
+    //        }
+    //    }
+    //    tableView.dataSource = self
+    //}
+    
     
    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return api?.leads?.count ?? 0
