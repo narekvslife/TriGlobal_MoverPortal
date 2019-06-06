@@ -84,7 +84,6 @@ struct ApiLead {
             self.freeLeadsJson = ApiLead.leadsRequest(id: id, url: freeLeadsURL)
             if let json = self.freeLeadsJson{
                 freeLeads = ApiLead.fromJsonToLeadsArray(json: json)
-                print(freeLeads)
             }
         }
 
@@ -100,6 +99,7 @@ struct ApiLead {
             leads_.append(newLead)
         }
         leads_ = leads_.sorted(by: { $0.movingDate < $1.movingDate})
+        
         return leads_
     }
     
