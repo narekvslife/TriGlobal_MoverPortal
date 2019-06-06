@@ -1,5 +1,5 @@
 //
-//  FreeLeadsTableViewCell.swift
+//  FreeLeadsAdditionalInfoTableViewCell.swift
 //  TriGlobal_MoverPortal
 //
 //  Created by narekvslife on 06/06/2019.
@@ -8,7 +8,11 @@
 
 import UIKit
 
-class FreeLeadsTableViewCell: UITableViewCell {
+class FreeLeadsAdditionalInfoTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var movingSizeLabel: UILabel!
+    @IBOutlet weak var movingDateLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
