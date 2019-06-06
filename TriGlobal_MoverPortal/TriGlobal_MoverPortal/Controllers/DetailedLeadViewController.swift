@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class DetailedLeadViewController: UITableViewController {
 
@@ -62,7 +63,32 @@ class DetailedLeadViewController: UITableViewController {
     }
     
     
+    @IBAction func CallNumberFirst(_ sender: Any) {
+        if let phone = phone1Label.text{
+            let url: NSURL = NSURL(string: "tel://\(phone.replacingOccurrences(of: " ", with: ""))")!
+            UIApplication.shared.open(url as URL)
+        }
+        
+    }
     
+    
+    @IBAction func CallNumberSecond(_ sender: Any) {
+        if let phone = phone2Label.text{
+            let url: NSURL = NSURL(string: "tel://\(phone.replacingOccurrences(of: " ", with: ""))")!
+            UIApplication.shared.open(url as URL)
+        }
+    }
+    
+    @IBAction func SendEmail(_ sender: Any) {
+        guard MFMailComposeViewController.canSendMail() else {
+            return
+        }
+        
+        let composer = MFMailComposeViewController()
+        composer.mailComposeDelegate = self
+        composer.setToRecipients(["\(emailLabel.text!)"])
+        present(composer, animated: true)
+    }
     
     /*
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -114,6 +140,27 @@ class DetailedLeadViewController: UITableViewController {
         return cell
     }
      */
+}
+extension DetailedLeadViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        if let _ = error {
+            controller.dismiss(animated: true)
+            return
+        }
+        
+        switch result {
+        case .cancelled:
+            print("Cancelled")
+        case .failed:
+            print("Failed to send")
+        case .saved:
+            print("Saved")
+        case .sent:
+            print("Email Sent")
+        }
+        
+        controller.dismiss(animated: true)
+    }
 }
 
     /*
