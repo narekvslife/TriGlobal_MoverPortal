@@ -17,7 +17,7 @@ class LeadsViewController: UITableViewController {
         super.viewDidLoad()
         update()
         refresher = UIRefreshControl()
-        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.attributedTitle = NSAttributedString(string: "Refreshing...")
         refresher.addTarget(self, action: #selector(LeadsViewController.update),
                             for: UIControl.Event.valueChanged)
         tableView.addSubview(refresher)
@@ -32,7 +32,7 @@ class LeadsViewController: UITableViewController {
         self.view.addSubview(self.activityIndicator)
         self.activityIndicator.startAnimating()
         DispatchQueue.global(qos: .userInteractive).async {
-            self.api = ApiLead(id: "1", apiType: .Leads)
+            self.api = ApiLead(id: "1")
             DispatchQueue.main.async {
                 if self.api?.leadsJson == nil{
                     let alert = UIAlertController(title: "Server Error", message: "Something went wrong", preferredStyle: .alert)

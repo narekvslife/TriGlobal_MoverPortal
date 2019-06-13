@@ -10,18 +10,12 @@ import Foundation
 
 
 let leadsURL = "https://public.triglobal.info/api/requests.php"
-let freeLeadsURL = "https://public.triglobal.info/api/freeleads.php"
-
 
 struct ApiLead {
     
     var leadsJson: [Dictionary<String,Any>]?
-    var freeLeadsJson: [Dictionary<String,Any>]?
     var leads: [Lead]?
-    var freeLeads : [Lead]?
-    
-    
-    
+   
     private static func leadsRequest(id: String, url: String) -> [Dictionary<String,Any>]?{
         var json: [Dictionary<String,Any>]?
   
@@ -38,7 +32,7 @@ struct ApiLead {
         
 
         DispatchQueue.global().async {
-            let request = NSMutableURLRequest(url: NSURL(string: "https://public.triglobal.info/api/requests.php")! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+            let request = NSMutableURLRequest(url: NSURL(string: url)! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
             request.httpMethod = "POST"
             request.allHTTPHeaderFields = headers
             request.httpBody = body.data(using: .utf8)
@@ -69,25 +63,11 @@ struct ApiLead {
         group.wait()
         return json
     }
-    
-    enum type{
-        case Leads
-        case FreeLeads
-    }
-    
-    init(id: String, apiType: type){
-        
-        switch apiType {
-        case .Leads:
-            self.leadsJson = ApiLead.leadsRequest(id: id, url: leadsURL)
-            if let json = self.leadsJson{
-                leads = ApiLead.fromJsonToLeadsArray(json: json)
-            }
-        case .FreeLeads:
-            self.freeLeadsJson = ApiLead.leadsRequest(id: id, url: freeLeadsURL)
-            if let json = self.freeLeadsJson{
-                freeLeads = ApiLead.fromJsonToLeadsArray(json: json)
-            }
+   
+    init(id: String){
+        self.leadsJson = ApiLead.leadsRequest(id: id, url: leadsURL)
+        if let json = self.leadsJson{
+            leads = ApiLead.fromJsonToLeadsArray(json: json)
         }
 
     }

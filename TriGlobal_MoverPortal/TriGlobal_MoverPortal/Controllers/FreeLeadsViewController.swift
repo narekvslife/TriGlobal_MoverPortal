@@ -28,7 +28,10 @@ struct LeadAdditional {
 
 class FreeLeadsViewController: UITableViewController {
 
-    var api: ApiLead?
+    var api: ApiFreeLead?
+    
+    var refresher: UIRefreshControl!
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)
     
     var tableArray = [TableStruct(isOpened: false, cellPreview: LeadPreview(), cellAdditional: LeadAdditional()),
                       TableStruct(isOpened: false, cellPreview: LeadPreview(), cellAdditional: LeadAdditional()),
@@ -36,6 +39,13 @@ class FreeLeadsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        update_freeLeads()
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Refreshing...")
+        refresher.addTarget(self, action: #selector(FreeLeadsViewController.update_freeLeads),
+                            for: UIControl.Event.valueChanged)
+        tableView.addSubview(refresher)
        /*
         DispatchQueue.global(qos: .userInteractive).async {
             self.api = ApiLead(id: "1", apiType: .FreeLeads)
@@ -49,6 +59,34 @@ class FreeLeadsViewController: UITableViewController {
         tableView.dataSource = self
         
         tableView.rowHeight = 70
+
+    }
+    
+    @objc func update_freeLeads()
+    {
+        self.activityIndicator.center = self.view.center
+        self.activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.api = ApiFreeLead(id: "1")
+            DispatchQueue.main.async {
+                if self.api?.freeLeadsJson == nil{
+                    let alert = UIAlertController(title: "Server Error", message: "Something went wrong", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) {
+                        (action) in  print("Error Api")
+                    }
+                    alert.addAction(ok)
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
+                self.refresher.endRefreshing()
+                self.activityIndicator.stopAnimating()
+                self.tableView.reloadData()
+            }
+        }
+        tableView.dataSource = self
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

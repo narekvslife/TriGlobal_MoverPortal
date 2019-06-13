@@ -19,6 +19,8 @@
 		A552D5552288B91400430BA8 /* LeadsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A552D5522288B17800430BA8 /* LeadsTableViewCell.swift */; };
 		D1B005FD2281A73900AD247A /* Lead.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B005FC2281A73900AD247A /* Lead.swift */; };
 		D1B005FF2281B24900AD247A /* ApiLead.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B005FE2281B24900AD247A /* ApiLead.swift */; };
+		D1CD510422B2B5C60043BD18 /* FreeLead.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CD510322B2B5C60043BD18 /* FreeLead.swift */; };
+		D1CD510622B2B8DB0043BD18 /* ApiFreeLead.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CD510522B2B8DB0043BD18 /* ApiFreeLead.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		A552D5522288B17800430BA8 /* LeadsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsTableViewCell.swift; sourceTree = "<group>"; };
 		D1B005FC2281A73900AD247A /* Lead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lead.swift; sourceTree = "<group>"; };
 		D1B005FE2281B24900AD247A /* ApiLead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLead.swift; sourceTree = "<group>"; };
+		D1CD510322B2B5C60043BD18 /* FreeLead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeLead.swift; sourceTree = "<group>"; };
+		D1CD510522B2B8DB0043BD18 /* ApiFreeLead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiFreeLead.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,8 @@
 			children = (
 				D1B005FC2281A73900AD247A /* Lead.swift */,
 				D1B005FE2281B24900AD247A /* ApiLead.swift */,
+				D1CD510522B2B8DB0043BD18 /* ApiFreeLead.swift */,
+				D1CD510322B2B5C60043BD18 /* FreeLead.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,9 +198,11 @@
 				D1B005FF2281B24900AD247A /* ApiLead.swift in Sources */,
 				D1B005FD2281A73900AD247A /* Lead.swift in Sources */,
 				A552D54E22888EFE00430BA8 /* FreeLeadsViewController.swift in Sources */,
+				D1CD510622B2B8DB0043BD18 /* ApiFreeLead.swift in Sources */,
 				A552D5552288B91400430BA8 /* LeadsTableViewCell.swift in Sources */,
 				A552D5502288A86500430BA8 /* DetailedLeadViewController.swift in Sources */,
 				A509E85922A94D0700D926A7 /* FreeLeadsPreviewTableViewCell.swift in Sources */,
+				D1CD510422B2B5C60043BD18 /* FreeLead.swift in Sources */,
 				A509E85B22A94D3700D926A7 /* FreeLeadsAdditionalInfoTableViewCell.swift in Sources */,
 				A535E0E7228199600005662B /* AppDelegate.swift in Sources */,
 			);
@@ -343,14 +351,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 444WN3X977;
+				DEVELOPMENT_TEAM = 3G37H4RB4N;
 				INFOPLIST_FILE = TriGlobal_MoverPortal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "narekvslife.TriGlobal-MoverPortal";
+				PRODUCT_BUNDLE_IDENTIFIER = "shikunovn.TriGlobal-MoverPortal";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -362,14 +370,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 444WN3X977;
+				DEVELOPMENT_TEAM = 3G37H4RB4N;
 				INFOPLIST_FILE = TriGlobal_MoverPortal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "narekvslife.TriGlobal-MoverPortal";
+				PRODUCT_BUNDLE_IDENTIFIER = "shikunovn.TriGlobal-MoverPortal";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
