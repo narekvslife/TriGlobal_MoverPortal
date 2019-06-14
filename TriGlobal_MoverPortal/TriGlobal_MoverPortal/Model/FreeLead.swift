@@ -14,6 +14,14 @@ struct FreeLead {
     let price: String
     let matched: String
     let timeRaw: Int
+    
+    let cityFrom: String
+    let countryFrom: String // Api возвращает код страны, а не название страны. Нужно сопоставлять код и страну
+    let cityTo: String      // То есть: FR - France, NL - Netherlands
+    let countryTo: String
+    let movingDate: String
+    let volumeFt: String
+    let volumeM: String
 }
 
 

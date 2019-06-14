@@ -88,7 +88,11 @@ struct ApiFreeLead {
             
             let newFreeLead = FreeLead(id: String(describing: dict!["re_id"] ?? "-"), timeLeft: time , price: String(describing: dict!["credit_amount"] ?? "-"),
                 matched: String(describing: dict!["amount_matched"] ?? "-"),
-                timeRaw: hours! * 60 + mins!)
+                timeRaw: hours! * 60 + mins!, cityFrom: String(describing: dict!["re_city_from"] ?? "-"),
+                countryFrom: String(describing: dict!["re_co_code_from"] ?? "-"),
+                cityTo: String(describing: dict!["re_city_to"] ?? "-"), countryTo: String(describing: dict!["re_co_code_to"] ?? "-"),
+                movingDate: String(describing: dict!["re_moving_date"] ?? "-"), volumeFt: String(describing: dict!["re_volume_ft3"] ?? "-"), volumeM: String(describing: dict!["re_volume_m3"] ?? "-"))
+                
             
             freeLeads_.append(newFreeLead)
         }

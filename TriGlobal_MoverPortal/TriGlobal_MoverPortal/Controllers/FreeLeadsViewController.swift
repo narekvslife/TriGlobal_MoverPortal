@@ -59,6 +59,7 @@ class FreeLeadsViewController: UITableViewController {
         tableView.dataSource = self
         
         tableView.rowHeight = 70
+        
 
     }
     
@@ -83,6 +84,8 @@ class FreeLeadsViewController: UITableViewController {
                 self.refresher.endRefreshing()
                 self.activityIndicator.stopAnimating()
                 self.tableView.reloadData()
+                print("Free Leads:")
+                print(self.api?.freeLeads)
             }
         }
         tableView.dataSource = self
