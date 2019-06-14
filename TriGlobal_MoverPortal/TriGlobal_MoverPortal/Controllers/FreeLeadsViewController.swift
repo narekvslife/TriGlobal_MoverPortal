@@ -28,14 +28,30 @@ struct LeadAdditional {
 
 class FreeLeadsViewController: UITableViewController {
 
-    var api: ApiFreeLead?
+    var api: ApiFreeLead?{
+        didSet{
+            if let apiFreeLeads = self.api?.freeLeads{
+                for lead in apiFreeLeads{
+                    self.tableArray.append(
+                        TableStruct(
+                        isOpened: false,
+                        cellPreview: LeadPreview(movingFrom: lead.cityFrom, movingTo: lead.cityTo, timeLeft: lead.timeLeft),
+                        cellAdditional: LeadAdditional(movingSize: "?", movingDate: lead.movingDate, Price: lead.price)
+                        )
+                    )
+                }
+            }
+        }
+    }
     
     var refresher: UIRefreshControl!
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)
-    
+    /*
     var tableArray = [TableStruct(isOpened: false, cellPreview: LeadPreview(), cellAdditional: LeadAdditional()),
                       TableStruct(isOpened: false, cellPreview: LeadPreview(), cellAdditional: LeadAdditional()),
                       TableStruct(isOpened: false, cellPreview: LeadPreview(), cellAdditional: LeadAdditional()),]
+    */
+    var tableArray : [TableStruct] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
