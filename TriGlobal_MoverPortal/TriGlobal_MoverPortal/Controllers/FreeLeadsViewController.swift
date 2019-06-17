@@ -10,6 +10,7 @@ import UIKit
 
 struct TableStruct{
     var isOpened = false
+    var freeLeadId: String
     var cellPreview: LeadPreview
     var cellAdditional: LeadAdditional
 }
@@ -28,13 +29,38 @@ struct LeadAdditional {
 
 class FreeLeadsViewController: UITableViewController {
 
+    @IBAction func buyButtonTap(_ sender: UIButton) {
+        
+        var selectedFreeLeadId = ""
+        
+        if let cell = sender.superview?.superview as? FreeLeadsAdditionalInfoTableViewCell {
+           selectedFreeLeadId = self.tableArray[self.tableView.indexPath(for: cell)!.section].freeLeadId
+        }
+        
+        if selectedFreeLeadId != ""{
+            if let answer = self.api?.buyFreeLead(companyId: "1", freeLeadId: selectedFreeLeadId) {
+                if answer{
+                    print("Success")
+                    self.updateFreeLeads()
+                    //at this point table looks same because buying logic is not fully done on the api side
+                    self.tableView.reloadData()
+                }
+                else{
+                    print("Not success")
+                }
+            }
+        }
+    }
+    
     var api: ApiFreeLead?{
         didSet{
-            if let apiFreeLeads = self.api?.freeLeads{
+            if let apiFreeLeads = self.api?.freeLeads
+            {
                 for lead in apiFreeLeads{
                     self.tableArray.append(
                         TableStruct(
                         isOpened: false,
+                        freeLeadId: lead.id,
                         cellPreview: LeadPreview(movingFrom: lead.cityFrom, movingTo: lead.cityTo, timeLeft: lead.timeLeft),
                         cellAdditional: LeadAdditional(movingSize: "?", movingDate: lead.movingDate, Price: lead.price)
                         )
@@ -56,10 +82,10 @@ class FreeLeadsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        update_freeLeads()
+        updateFreeLeads()
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Refreshing...")
-        refresher.addTarget(self, action: #selector(FreeLeadsViewController.update_freeLeads),
+        refresher.addTarget(self, action: #selector(FreeLeadsViewController.updateFreeLeads),
                             for: UIControl.Event.valueChanged)
         tableView.addSubview(refresher)
        /*
@@ -74,12 +100,12 @@ class FreeLeadsViewController: UITableViewController {
         
         tableView.dataSource = self
         
-        tableView.rowHeight = 70
+        //tableView.rowHeight = 70
         
 
     }
     
-    @objc func update_freeLeads()
+    @objc func updateFreeLeads()
     {
         self.activityIndicator.center = self.view.center
         self.activityIndicator.hidesWhenStopped = true
@@ -148,8 +174,15 @@ class FreeLeadsViewController: UITableViewController {
             cell.movingSizeLabel?.text = self.tableArray[indexPath.section].cellAdditional.movingSize
             cell.movingDateLabel?.text = self.tableArray[indexPath.section].cellAdditional.movingDate
             cell.priceLabel?.text = self.tableArray[indexPath.section].cellAdditional.Price
+            
             return cell
         }
+    }
+    
+    //-auto resize for cells
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
