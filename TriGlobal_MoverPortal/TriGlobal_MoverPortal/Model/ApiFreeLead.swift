@@ -9,11 +9,53 @@
 import Foundation
 
 let freeLeadsURL = "https://public.triglobal-test-back.nl/api/freeleads.php"
-
+let buyFreeLeadURL = "https://public.triglobal-test-back.nl/api/buy_lead.php"
 struct ApiFreeLead {
     
     var freeLeadsJson: Dictionary<String,Any>?
     var freeLeads: [FreeLead]?
+    
+    func buyFreeLead(companyId: String, freeLeadId: String) -> Bool {
+        let headers = [
+            "content-type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+            "cache-control": "no-cache",
+        ]
+        
+        let body = "------WebKitFormBoundary7MA4YWxkTrZu0gW\nContent-Disposition: form-data; name=\"token\"\n\nCdcZ5TqsTS\n------WebKitFormBoundary7MA4YWxkTrZu0gW\nContent-Disposition: form-data; name=\"id\"\n\n\(companyId)\n------WebKitFormBoundary7MA4YWxkTrZu0gW\nContent-Disposition: form-data; name=\"re_id\"\n\n\(freeLeadId)\n------WebKitFormBoundary7MA4YWxkTrZu0gW--"
+        
+        var answer: Bool = false
+    
+        let group = DispatchGroup()
+        group.enter()
+
+        DispatchQueue.global().async {
+            let request = NSMutableURLRequest(url: NSURL(string: buyFreeLeadURL)! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+            request.httpMethod = "POST"
+            request.allHTTPHeaderFields = headers
+            request.httpBody = body.data(using: .utf8)
+            
+            URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
+                if let error = error {
+                    answer = false
+                    print(error)
+                    group.leave()
+                } else {
+                    if let data = data{
+                        print(String(decoding: data, as: UTF8.self))
+                        if String(decoding: data, as: UTF8.self) == "success"{
+                            answer = true
+                        }
+                        group.leave()
+                    }
+                }
+                }.resume()
+            
+        }
+        
+        group.wait()
+
+        return answer
+    }
     
     private static func freeLeadsRequest(id: String, url: String) -> Dictionary<String,Any>?{
         var json: Dictionary<String,Any>?
