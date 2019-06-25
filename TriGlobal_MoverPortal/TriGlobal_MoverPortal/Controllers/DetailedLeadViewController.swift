@@ -32,6 +32,9 @@ class DetailedLeadViewController: UITableViewController {
     @IBOutlet weak var movingToZipcodeLabel: UILabel!
     @IBOutlet weak var movingToCityLabel: UILabel!
     @IBOutlet weak var movingToCountryLabel: UILabel!
+    @IBOutlet weak var leadAddedDateLabel: UILabel!
+    @IBOutlet weak var packingLabel: UILabel!
+    @IBOutlet weak var businessLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +47,13 @@ class DetailedLeadViewController: UITableViewController {
             (leadInfo?.assembly == "1") ? "No" : ""
         storageLabel.text = (leadInfo?.storage == "2") ? "Yes" :
             (leadInfo?.storage == "1") ? "No" : ""
+        
+        packingLabel.text = (leadInfo?.packing == "2") ? "Yes" :
+            (leadInfo?.packing == "1") ? "No" : ""
+        
+        businessLabel.text = (leadInfo?.business ==
+            true) ? "Yes" : "No"
+            
         
         companyNameLabel.text = leadInfo?.companyName
         nameLabel.text = leadInfo?.name
@@ -60,6 +70,7 @@ class DetailedLeadViewController: UITableViewController {
         movingToZipcodeLabel.text = leadInfo?.zipcodeTo
         movingToCityLabel.text = leadInfo?.cityTo
         movingToCountryLabel.text = leadInfo?.countryTo
+        leadAddedDateLabel.text = leadInfo?.received
     }
     
     
