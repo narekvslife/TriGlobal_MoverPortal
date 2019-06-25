@@ -9,7 +9,7 @@
 import Foundation
 
 
-let leadsURL = "https://public.triglobal.info/api/requests.php"
+let leadsURL = "https://public.triglobal-test-back.nl/api/requests.php"
 
 struct ApiLead {
     

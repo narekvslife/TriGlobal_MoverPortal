@@ -38,17 +38,44 @@ class FreeLeadsViewController: UITableViewController {
         }
         
         if selectedFreeLeadId != ""{
-            if let answer = self.api?.buyFreeLead(companyId: "1", freeLeadId: selectedFreeLeadId) {
-                if answer{
-                    print("Success")
-                    self.updateFreeLeads()
-                    //at this point table looks same because buying logic is not fully done on the api side
-                    self.tableView.reloadData()
+            let alert =  UIAlertController(title: "Are you sure?", message: "", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: {
+                (action) in alert.dismiss(animated: true, completion: nil)
+                
+                if let answer = self.api?.buyFreeLead(companyId: "1", freeLeadId: selectedFreeLeadId) {
+                    if answer{
+                        let alertSec = UIAlertController(title: "Success!", message: "You have a new Lead in your List!", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .default) {
+                            (action) in  print("Success")
+                        }
+                        alertSec.addAction(ok)
+                        self.present(alertSec, animated: true, completion: nil)
+                        print("Success")
+                        self.updateFreeLeads()
+            
+                        //at this point table looks same because buying logic is not fully done on the api side
+
+                    }
+                    else{
+                        let alertTh = UIAlertController(title: "Error!", message: "Something went wrong...", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .default) {
+                            (action) in  print("Error")
+                        }
+                        alertTh.addAction(ok)
+                        self.present(alertTh, animated: true, completion: nil)
+                        print("No success")
+                    }
                 }
-                else{
-                    print("Not success")
-                }
-            }
+            }))
+            
+            alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: {
+                (action) in alert.dismiss(animated: true, completion: nil)
+                
+                print("Cancelled")
+            }))
+            self.present(alert, animated: true, completion: nil)
+            
+                      
         }
     }
     
@@ -107,6 +134,8 @@ class FreeLeadsViewController: UITableViewController {
     
     @objc func updateFreeLeads()
     {
+        self.tableView.dataSource = nil
+        self.tableView.reloadData()
         self.activityIndicator.center = self.view.center
         self.activityIndicator.hidesWhenStopped = true
         self.view.addSubview(self.activityIndicator)
@@ -126,8 +155,8 @@ class FreeLeadsViewController: UITableViewController {
                 self.refresher.endRefreshing()
                 self.activityIndicator.stopAnimating()
                 self.tableView.reloadData()
-                print("Free Leads:")
-                print(self.api?.freeLeads)
+                //print("Free Leads:")
+                //print(self.api?.freeLeads)
             }
         }
         tableView.dataSource = self
