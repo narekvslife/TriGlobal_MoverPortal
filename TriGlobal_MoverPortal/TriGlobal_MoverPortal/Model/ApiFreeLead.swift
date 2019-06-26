@@ -37,6 +37,7 @@ struct ApiFreeLead {
             URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
                 if let error = error {
                     answer = false
+                    print("buyFreeLead error!")
                     print(error)
                     group.leave()
                 } else {
@@ -44,6 +45,7 @@ struct ApiFreeLead {
                         print(String(decoding: data, as: UTF8.self))
                         if String(decoding: data, as: UTF8.self) == "success"{
                             answer = true
+                            print("buyFreeLead success")
                         }
                         group.leave()
                     }

@@ -83,6 +83,7 @@ class FreeLeadsViewController: UITableViewController {
         didSet{
             if let apiFreeLeads = self.api?.freeLeads
             {
+                self.tableArray = []
                 for lead in apiFreeLeads{
                     self.tableArray.append(
                         TableStruct(
@@ -136,6 +137,7 @@ class FreeLeadsViewController: UITableViewController {
     {
         self.tableView.dataSource = nil
         self.tableView.reloadData()
+        self.api?.freeLeads = nil
         self.activityIndicator.center = self.view.center
         self.activityIndicator.hidesWhenStopped = true
         self.view.addSubview(self.activityIndicator)
